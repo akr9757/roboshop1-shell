@@ -1,14 +1,19 @@
+source common.sh
+pwd
+exit
+
+
+
+
 echo -e "\e[34m>>>>>>>>>>>>>> Download Nodejs Repos <<<<<<<<<<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
 echo -e "\e[34m>>>>>>>>>>>>>> Install Nodejs <<<<<<<<<<<<\e[0m"
 yum install nodejs -y
 
-echo -e "\e[34m>>>>>>>>>>>>>> Setup Systemd Service <<<<<<<<<<<<\e[0m"
-cp cart.service /etc/systemd/system/cart.service
 
 echo -e "\e[34m>>>>>>>>>>>>>> Add Application User <<<<<<<<<<<<\e[0m"
-useradd roboshop
+useradd ${app_user}
 
 echo -e "\e[34m>>>>>>>>>>>>>> Add Application Directory <<<<<<<<<<<<\e[0m"
 rm -rf /app
@@ -23,6 +28,9 @@ unzip /tmp/cart.zip
 
 echo -e "\e[34m>>>>>>>>>>>>>> Install Nodejs Dependencies <<<<<<<<<<<<\e[0m"
 npm install
+
+echo -e "\e[34m>>>>>>>>>>>>>> Setup Systemd Service <<<<<<<<<<<<\e[0m"
+cp cart.service /etc/systemd/system/cart.service
 
 echo -e "\e[34m>>>>>>>>>>>>>> Start Cart Service <<<<<<<<<<<<\e[0m"
 systemctl daemon-reload
