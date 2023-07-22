@@ -16,4 +16,4 @@ systemctl enable user
 systemctl start user
 
 yum install mongodb-org-shell -y
-mongo --host MONGODB-SERVER-IPADDRESS </app/schema/user.js
+mongo --host mongodb-dev.akrdevopsb72.online </app/schema/user.js
