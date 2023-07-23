@@ -1,11 +1,13 @@
 script=$(realpath "$0")
 script_path=$(dirname "$script")
 source ${script_path}/common.sh
+payment_appuser_password=$1
 
 echo -e "\e[34m>>>>>>>>>>>>>> Install Python <<<<<<<<<<<<<<\e[0m"
 yum install python36 gcc python3-devel -y
 
 echo -e "\e[34m>>>>>>>>>>>>>> Setup Systemd Setup <<<<<<<<<<<<<<\e[0m"
+sed -i -e 's|payment_appuser_password|${payment_appuser_password}' ${script_path}/payment.service
 cp ${script_path}/payment.service /etc/systemd/system/payment.service
 
 echo -e "\e[34m>>>>>>>>>>>>>> Add Application User <<<<<<<<<<<<<<\e[0m"
