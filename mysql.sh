@@ -8,20 +8,24 @@ if [ -z "$mysql_root_password" ]; then
   exit
 fi
 
+func_printhead "Disable Default Mysql Version"
+yum module disable mysql -y &>>$log_file
+func_status_check $?
 
-echo -e "\e[34m>>>>>>>>>>>>>> Disable Default Mysql Version <<<<<<<<<<<<<<\e[0m"
-yum module disable mysql -y
+func_printhead "Copy Mysql Repo"
+cp ${script_path}/mysql.repo /etc/yum.repos.d/mongo.repo &>>$log_file
+func_status_check $?
 
-echo -e "\e[34m>>>>>>>>>>>>>> Copy Mysql Repo <<<<<<<<<<<<<<\e[0m"
-cp ${script_path}/mysql.repo /etc/yum.repos.d/mongo.repo
+func_printhead "Install Mysql Client"
+yum install mysql-community-server -y &>>$log_file
+func_status_check $?
 
-echo -e "\e[34m>>>>>>>>>>>>>> Install Mysql Client <<<<<<<<<<<<<<\e[0m"
-yum install mysql-community-server -y
+func_printhead "Start Mysql Service"
+systemctl enable mysqld &>>$log_file
+systemctl restart mysqld &>>$log_file
+func_status_check $?
 
-echo -e "\e[34m>>>>>>>>>>>>>> Start Mysql Service <<<<<<<<<<<<<<\e[0m"
-systemctl enable mysqld
-systemctl restart mysqld
-
-echo -e "\e[34m>>>>>>>>>>>>>> Update Default User <<<<<<<<<<<<<<\e[0m"
-mysql_secure_installation --set-root-pass ${mysql_root_password}
-mysql -uroot -pRoboShop@1
+func_printhead "Update Default User"
+mysql_secure_installation --set-root-pass ${mysql_root_password} &>>$log_file
+mysql -uroot -pRoboShop@1 &>>$log_file
+func_status_check $?
