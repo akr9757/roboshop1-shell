@@ -21,7 +21,10 @@ func_status_check() {
 
 func_app_prereq() {
     func_printhead "Add Application User"
-    useradd ${app_user}
+    id ${app_user} &>>$log_file
+    if [ $? -ne 0 ]; then
+       useradd ${app_user} &>>$log_file
+    fi
     func_status_check $?
 
     func_printhead "Add Application Directory"

@@ -8,4 +8,5 @@ if [ -z "$payment_appuser_password" ]; then
   exit
 fi
 
-
+component=payment
+func_python
