@@ -1,8 +1,8 @@
 script=$(realpath $0)
 echo $script
-exit
-source common.sh
 
+source common.sh
+echo app_user = $app_user
 
 exit
 
