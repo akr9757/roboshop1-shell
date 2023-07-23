@@ -1,5 +1,5 @@
 echo -e "\e[34m>>>>>>>>>>>>>> Copy Mongo Repo <<<<<<<<<<<<<<\e[0m"
-cp mongo.repo /etc/yum.repos.d/mongo.repo
+cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
 
 echo -e "\e[34m>>>>>>>>>>>>>> Install Mongodb Client <<<<<<<<<<<<<<\e[0m"
 yum install mongodb-org -y

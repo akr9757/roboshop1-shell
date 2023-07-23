@@ -2,7 +2,7 @@ echo -e "\e[34m>>>>>>>>>>>>>> Install Nginx <<<<<<<<<<<<<<\e[0m"
 yum install nginx -y
 
 echo -e "\e[34m>>>>>>>>>>>>>> Setup Roboshop Configuration <<<<<<<<<<<<<<\e[0m"
-cp roboshop.conf /etc/nginx/default.d/roboshop.conf
+cp ${script_path}/roboshop.conf /etc/nginx/default.d/roboshop.conf
 
 echo -e "\e[34m>>>>>>>>>>>>>> Remove Default Content <<<<<<<<<<<<<<\e[0m"
 rm -rf /usr/share/nginx/html/*

@@ -1,13 +1,6 @@
 script=$(realpath "$0")
 script_path=$(dirname "$script")
-
 source ${script_path}/common.sh
-echo app_user=$app_user
-exit
-
-
-
-
 
 echo -e "\e[34m>>>>>>>>>>>>>> Download Nodejs Repos <<<<<<<<<<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
@@ -34,7 +27,7 @@ echo -e "\e[34m>>>>>>>>>>>>>> Install Nodejs Dependencies <<<<<<<<<<<<\e[0m"
 npm install
 
 echo -e "\e[34m>>>>>>>>>>>>>> Setup Systemd Service <<<<<<<<<<<<\e[0m"
-cp cart.service /etc/systemd/system/cart.service
+cp ${script_path}/cart.service /etc/systemd/system/cart.service
 
 echo -e "\e[34m>>>>>>>>>>>>>> Start Cart Service <<<<<<<<<<<<\e[0m"
 systemctl daemon-reload

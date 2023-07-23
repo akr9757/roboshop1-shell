@@ -2,10 +2,10 @@ echo -e "\e[34m>>>>>>>>>>>>>> Install Golang <<<<<<<<<<<<\e[0m"
 yum install golang -y
 
 echo -e "\e[34m>>>>>>>>>>>>>> Setup SystemD Setup <<<<<<<<<<<<\e[0m"
-cp dispatch.service /etc/systemd/system/dispatch.service
+cp ${script_path}/dispatch.service /etc/systemd/system/dispatch.service
 
 echo -e "\e[34m>>>>>>>>>>>>>> Add Application User <<<<<<<<<<<<\e[0m"
-useradd roboshop
+useradd ${app_user}
 
 echo -e "\e[34m>>>>>>>>>>>>>> Creat App Directory <<<<<<<<<<<<\e[0m"
 rm -rf /app

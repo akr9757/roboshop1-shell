@@ -3,11 +3,11 @@ curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
 yum install nodejs -y
 
-cp catalogue.service /etc/systemd/system/catalogue.service
+cp ${script_path}/catalogue.service /etc/systemd/system/catalogue.service
 
 
 
-useradd roboshop
+useradd ${app_user}r
 
 rm -rf /app
 mkdir /app
@@ -24,7 +24,7 @@ systemctl enable catalogue
 systemctl restart catalogue
 
 echo -e "\e[34m>>>>>>>>>>>>>> Copy Mongo Repo <<<<<<<<<<<<\e[0m"
-cp /home/centos/roboshop1-shell/mongo.repo /etc/yum.repos.d/mongo.repo
+cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
 
 echo -e "\e[34m>>>>>>>>>>>>>> Install Mongodb Client <<<<<<<<<<<<\e[0m"
 yum install mongodb-org-shell -y

@@ -2,10 +2,10 @@ echo -e "\e[34m>>>>>>>>>>>>>> Install Maven <<<<<<<<<<<<\e[0m"
 yum install maven -y
 
 echo -e "\e[34m>>>>>>>>>>>>>> Setup SystemD Service <<<<<<<<<<<<\e[0m"
-cp shipping.service /etc/systemd/system/shipping.service
+cp ${script_path}/shipping.service /etc/systemd/system/shipping.service
 
 echo -e "\e[34m>>>>>>>>>>>>>> Add Application User <<<<<<<<<<<<\e[0m"
-useradd roboshop
+useradd ${app_user}
 
 echo -e "\e[34m>>>>>>>>>>>>>> Add Application Directory <<<<<<<<<<<<\e[0m"
 rm -rf /app

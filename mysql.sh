@@ -2,7 +2,7 @@ echo -e "\e[34m>>>>>>>>>>>>>> Disable Default Mysql Version <<<<<<<<<<<<<<\e[0m"
 yum module disable mysql -y
 
 echo -e "\e[34m>>>>>>>>>>>>>> Copy Mysql Repo <<<<<<<<<<<<<<\e[0m"
-cp mysql.repo /etc/yum.repos.d/mongo.repo
+cp ${script_path}/mysql.repo /etc/yum.repos.d/mongo.repo
 
 echo -e "\e[34m>>>>>>>>>>>>>> Install Mysql Client <<<<<<<<<<<<<<\e[0m"
 yum install mysql-community-server -y

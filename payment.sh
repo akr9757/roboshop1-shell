@@ -2,10 +2,10 @@ echo -e "\e[34m>>>>>>>>>>>>>> Install Python <<<<<<<<<<<<<<\e[0m"
 yum install python36 gcc python3-devel -y
 
 echo -e "\e[34m>>>>>>>>>>>>>> Setup Systemd Setup <<<<<<<<<<<<<<\e[0m"
-cp payment.service /etc/systemd/system/payment.service
+cp ${script_path}/payment.service /etc/systemd/system/payment.service
 
 echo -e "\e[34m>>>>>>>>>>>>>> Add Application User <<<<<<<<<<<<<<\e[0m"
-useradd roboshop
+useradd ${app_user}
 
 echo -e "\e[34m>>>>>>>>>>>>>> Add Application Directory <<<<<<<<<<<<<<\e[0m"
 rm -rf /app
