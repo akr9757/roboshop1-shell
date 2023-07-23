@@ -107,7 +107,7 @@ func_java() {
   yum install maven -y &>>$log_file
   func_status_check $?
 
-  func_apppreq
+  func_app_prereq
 
   func_printhead "Download Maven Dependencies"
   mvn clean package &>>$log_file
@@ -132,6 +132,26 @@ func_python() {
 
   func_printhead "Update Password System Service File"
   sed -i -e 's|payment_appuser_password|${payment_appuser_password}' ${script_path}/payment.service &>>$log_file
+
+  func_systemd_setup
+}
+
+func_golang() {
+  func_printhead "Install Golang"
+  yum install golang -y
+  func_status_check $?
+
+  func_app_prereq
+
+  func_printhead "Install Golang Dependencies"
+  go mod init ${component}
+  go get
+  go build
+  func_status_check $?
+
+  func_printhead "Setup SystemD Setup"
+  sed -i -e 's|dispatch_app_password|${dispatch_app_password}|' ${script_path}/dispatch.service
+  func_status_check $?
 
   func_systemd_setup
 }
