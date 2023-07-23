@@ -1,13 +1,17 @@
 script=$(realpath "$0")
 script_path=$(dirname "$script")
 source ${script_path}/common.sh
-dispatch-app_password=$1
+dispatch_app_password=$1
+
+if [ -z "$dispatch_app_password" ]; then
+  echo input app user password is missing
+fi
 
 echo -e "\e[34m>>>>>>>>>>>>>> Install Golang <<<<<<<<<<<<\e[0m"
 yum install golang -y
 
 echo -e "\e[34m>>>>>>>>>>>>>> Setup SystemD Setup <<<<<<<<<<<<\e[0m"
-sed -i -e 's|dispatch-app_password|${dispatch-app_password}|' ${script_path}/dispatch.service
+sed -i -e 's|dispatch_app_password|${dispatch_app_password}|' ${script_path}/dispatch.service
 cp ${script_path}/dispatch.service /etc/systemd/system/dispatch.service
 
 echo -e "\e[34m>>>>>>>>>>>>>> Add Application User <<<<<<<<<<<<\e[0m"
