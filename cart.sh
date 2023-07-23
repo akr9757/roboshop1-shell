@@ -1,10 +1,10 @@
-script=$(realpath $0)
-echo $script
+script=$(realpath "$0")
+script_path=$(dirname "$script")
 
 source common.sh
 echo app_user = $app_user
-
 exit
+
 
 
 
