@@ -16,7 +16,7 @@ func_printhead "Download Rabbitma Repo"
 curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash &>>$log_file
 func_status_check $?
 
-func_printhead "install Rabbitmq"
+func_printhead "install Erlang Rabbitmq"
 yum install erlang rabbitmq-server -y &>>$log_file
 func_status_check $?
 
