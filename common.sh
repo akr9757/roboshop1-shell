@@ -5,6 +5,8 @@ log_file=/tmp/roboshop.log
 
 func_printhead() {
   echo -e "\e[34m>>>>>>>>>>>>>> $1 <<<<<<<<<<<<\e[0m"
+  echo -e "\e[34m>>>>>>>>>>>>>> $1 <<<<<<<<<<<<\e[0m" &>>$log_file
+
 }
 
 func_status_check() {
@@ -18,8 +20,8 @@ func_status_check() {
 }
 
 func_app_prereq() {
-  func_printhead "Add Application User"
-    useradd ${app_user} &>>$log_file
+    func_printhead "Add Application User"
+    useradd ${app_user}
     func_status_check $?
 
     func_printhead "Add Application Directory"
