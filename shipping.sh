@@ -5,6 +5,7 @@ mysql_appuser_password=$1
 
 if [ -z "$mysql_appuser_password" ]; then
     echo input app user password is missing
+    exit
 fi
 
 echo -e "\e[34m>>>>>>>>>>>>>> Install Maven <<<<<<<<<<<<\e[0m"

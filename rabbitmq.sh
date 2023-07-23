@@ -5,6 +5,7 @@ rabbitmq_appuser_password=$1
 
 if [ -z "$rabbitmq_appuser_password" ]; then
   echo input app user password is missing
+  exit
 fi
 
 echo -e "\e[34m>>>>>>>>>>>>>> Download Erlang Repos <<<<<<<<<<<<<<\e[0m"

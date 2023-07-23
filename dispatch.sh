@@ -5,6 +5,7 @@ dispatch_app_password=$1
 
 if [ -z "$dispatch_app_password" ]; then
   echo input app user password is missing
+  exit
 fi
 
 echo -e "\e[34m>>>>>>>>>>>>>> Install Golang <<<<<<<<<<<<\e[0m"
