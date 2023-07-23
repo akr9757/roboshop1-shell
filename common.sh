@@ -1,4 +1,6 @@
 app_user=roboshop
+script=$(realpath "$0")
+script_path=$(dirname "$script")
 
 func_schema_setup() {
   if [ func_schema_setup == mongo ]; then
