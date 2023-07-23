@@ -138,19 +138,19 @@ func_python() {
 
 func_golang() {
   func_printhead "Install Golang"
-  yum install golang -y
+  yum install golang -y &>>$log_file
   func_status_check $?
 
   func_app_prereq
 
   func_printhead "Install Golang Dependencies"
-  go mod init ${component}
-  go get
-  go build
+  go mod init ${component} &>>$log_file
+  go get &>>$log_file
+  go build &>>$log_file
   func_status_check $?
 
   func_printhead "Setup SystemD Setup"
-  sed -i -e 's|dispatch_app_password|${dispatch_app_password}|' ${script_path}/dispatch.service
+  sed -i -e 's|dispatch_app_password|${dispatch_app_password}|' ${script_path}/dispatch.service &>>$log_file
   func_status_check $?
 
   func_systemd_setup
