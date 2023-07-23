@@ -1,5 +1,7 @@
 source common.sh
+
 dirname $0
+echo app_user = ${app_user}
 exit
 
 
