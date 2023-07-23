@@ -124,15 +124,14 @@ func_python() {
   yum install python36 gcc python3-devel -y &>>$log_file
   func_status_check $?
 
-  func_printhead "Setup Systemd Setup"
-  sed -i -e 's|payment_appuser_password|${payment_appuser_password}' ${script_path}/payment.service &>>$log_file
-  cp ${script_path}/payment.service /etc/systemd/system/payment.service
-
   func_app_prereq
 
   func_printhead "Install Python Dependencies"
   pip3.6 install -r requirements.txt &>>$log_file
   func_status_check $?
+
+  func_printhead "Update Password System Service File"
+  sed -i -e 's|payment_appuser_password|${payment_appuser_password}' ${script_path}/payment.service &>>$log_file
 
   func_systemd_setup
 }
