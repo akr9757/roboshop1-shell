@@ -132,6 +132,7 @@ func_python() {
 
   func_printhead "Update Password System Service File"
   sed -i -e "s|payment_appuser_password|${payment_appuser_password}" ${script_path}/payment.service &>>$log_file
+  func_status_check $?
 
   func_systemd_setup
 }
