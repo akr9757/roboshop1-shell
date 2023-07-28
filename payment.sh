@@ -5,7 +5,7 @@ payment_appuser_password=$1
 
 if [ -z "$payment_appuser_password" ]; then
   echo input app user password is missing
-  exit
+  exit 1
 fi
 
 component=payment

@@ -5,7 +5,7 @@ mysql_appuser_password=$1
 
 if [ -z "$mysql_appuser_password" ]; then
     echo input app user password is missing
-    exit
+    exit 1
 fi
 
 component=shipping
