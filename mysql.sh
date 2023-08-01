@@ -11,21 +11,21 @@ fi
 
 func_printhead "Disable MySQL 8 Version"
 dnf module disable mysql -y &>>$log_file
-func_stat_check $?
+func_status_check $?
 
 func_printhead "Copy MySQL Repo File"
 cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo &>>$log_file
-func_stat_check $?
+func_status_check $?
 
 func_printhead "Install MySQL"
 yum install mysql-community-server -y &>>$log_file
-func_stat_check $?
+func_status_check $?
 
 func_printhead "Start MySQL"
 systemctl enable mysqld &>>$log_file
 systemctl restart mysqld &>>$log_file
-func_stat_check $?
+func_status_check $?
 
 func_printhead "Reset MySQL Password"
 mysql_secure_installation --set-root-pass $mysql_root_password &>>$log_file
-func_stat_check $?
+func_status_check $?
